@@ -17,6 +17,22 @@ Oleh karena itu, project ini menggunakan data konsumsi energi rumah tangga untuk
 * Rendah
 * Sedang
 * Tinggi
+  
+## 👥 Anggota Kelompok
+
+| No. | Nama                  | NIM       |
+| --- | --------------------- | --------- |
+| 1   | Muh. Azriel Fabian    | F1G125064 |
+| 2   | Intan Aulia Zalzabila | F1G125008 |
+| 3   | Fitria Rizki Oktavia  | F1G125006 |
+
+## ❓ Rumusan Masalah
+
+1. Bagaimana mengklasifikasikan tingkat konsumsi energi rumah tangga menjadi kategori **Rendah, Sedang, dan Tinggi** menggunakan data konsumsi energi?
+
+2. Bagaimana penerapan algoritma **Decision Tree dan Random Forest** untuk melakukan klasifikasi konsumsi energi rumah tangga?
+
+3. Bagaimana hasil performa **Decision Tree dan Random Forest** dalam mengklasifikasikan konsumsi energi rumah tangga?
 
 ## Tujuan
 
