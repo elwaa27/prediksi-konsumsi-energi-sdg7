@@ -147,7 +147,7 @@ Kedua model memberikan hasil prediksi yang sama.
 
 ## Kesimpulan
 
-Berdasarkan pengujian yang dilakukan, Decision Tree dan Random Forest dapat digunakan untuk mengklasifikasikan tingkat konsumsi energi rumah tangga menjadi kategori Rendah, Sedang, dan Tinggi.
+Berdasarkan pengujian yang dilakukan, Decision Tree dan Random Forest dapat digunakan untuk mengklasifikasikan tingkat konsumsi energi rumah tangga menjadi kategori Rendah, Sedang dan Tinggi.
 
 Pada dataset dan pembagian data yang digunakan dalam project ini, Decision Tree memperoleh akurasi sebesar **96,31%**, sedangkan Random Forest memperoleh akurasi sebesar **96,81%**.
 
