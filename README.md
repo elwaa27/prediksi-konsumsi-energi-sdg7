@@ -1,118 +1,86 @@
-# Prediksi Konsumsi Energi Rumah Tangga
+# Pemanfaatan Decision Tree dan Random Forest untuk Memprediksi Konsumsi Energi Rumah Tangga sebagai Upaya Penghematan Energi
 
 ## Deskripsi Proyek
 
-Proyek ini menerapkan kecerdasan buatan (*Artificial Intelligence*) untuk mengklasifikasikan tingkat konsumsi energi rumah tangga menjadi tiga kategori, yaitu **Rendah, Sedang, dan Tinggi**, menggunakan algoritma Decision Tree dan Random Forest.
+Proyek ini menerapkan algoritma **Decision Tree** dan **Random Forest** untuk mengklasifikasikan konsumsi energi rumah tangga ke dalam tiga kategori, yaitu Rendah, Sedang, dan Tinggi. Proyek ini menggunakan dataset *Household Power Consumption* dan menerapkan tahapan preprocessing, analisis korelasi, standardisasi, normalisasi, pelatihan model, serta evaluasi performa.
 
-Proyek ini bertujuan memberikan informasi mengenai kategori penggunaan energi berdasarkan data konsumsi listrik. Hasil klasifikasi dapat digunakan sebagai bahan pendukung evaluasi penggunaan listrik dan upaya efisiensi energi.
-
-Proyek ini berkaitan dengan **Sustainable Development Goal (SDG) 7: Affordable and Clean Energy**, khususnya dalam mendukung penggunaan energi secara lebih efisien.
+Proyek ini merupakan bagian dari mata kuliah Kecerdasan Buatan yang dikaitkan dengan **Sustainable Development Goal 7 (SDG 7): Affordable and Clean Energy**.
 
 ## Latar Belakang
 
-Konsumsi energi listrik rumah tangga dapat bervariasi berdasarkan pola penggunaan peralatan listrik. Informasi mengenai tingkat konsumsi energi dapat membantu pengguna mengevaluasi penggunaan listriknya.
+Konsumsi energi rumah tangga dapat berubah sesuai dengan penggunaan berbagai peralatan listrik. Pengelompokan tingkat konsumsi energi dapat membantu memahami pola penggunaan energi.
 
-Untuk mendukung proses tersebut, proyek ini menggunakan algoritma machine learning untuk mempelajari pola dari data konsumsi listrik dan mengklasifikasikannya ke dalam kategori Rendah, Sedang, atau Tinggi.
+Machine learning digunakan untuk membangun model klasifikasi yang mampu mengelompokkan konsumsi energi berdasarkan fitur-fitur yang tersedia. Dalam proyek ini, algoritma Decision Tree dan Random Forest diterapkan dan dibandingkan untuk mengetahui performa masing-masing model.
 
-Model tidak secara langsung menghemat listrik, tetapi menghasilkan informasi yang dapat mendukung evaluasi penggunaan energi.
+## Identitas Kelompok
 
-## Anggota Kelompok
+| Nama | NIM |
+|---|---|
+| Muh. Azriel Fabian | F1G125064 |
+| Intan Aulia Zalzabila | F1G125008 |
+| Fitria Rizki Oktavia | F1G125006 |
 
-| No. | Nama | NIM |
-|---|---|---|
-| 1 | Muh. Azriel Fabian | F1G125064 |
-| 2 | Intan Aulia Zalzabila | F1G125008 |
-| 3 | Fitria Rizki Oktavia | F1G125006 |
+**Kelompok 7 — Program Studi Ilmu Komputer**
 
 ## Rumusan Masalah
 
-1. Bagaimana mengolah data konsumsi energi rumah tangga agar dapat digunakan untuk klasifikasi?
-2. Bagaimana menerapkan algoritma Decision Tree dan Random Forest untuk mengklasifikasikan tingkat konsumsi energi?
-3. Bagaimana menganalisis hubungan antarvariabel dalam dataset?
-4. Bagaimana membandingkan performa kedua algoritma berdasarkan hasil pengujian?
-5. Bagaimana menggunakan model terlatih untuk mengklasifikasikan data konsumsi energi baru?
+1. Bagaimana mengklasifikasikan konsumsi energi rumah tangga menjadi kategori Rendah, Sedang, dan Tinggi?
+2. Bagaimana menerapkan algoritma Decision Tree dan Random Forest untuk klasifikasi konsumsi energi rumah tangga?
+3. Bagaimana performa kedua model berdasarkan hasil evaluasi?
 
 ## Tujuan
 
-1. Melakukan preprocessing terhadap dataset konsumsi energi rumah tangga.
-2. Menganalisis korelasi antarvariabel numerik.
-3. Membentuk kategori konsumsi energi menjadi Rendah, Sedang, dan Tinggi.
-4. Membangun model klasifikasi menggunakan Decision Tree dan Random Forest.
-5. Menerapkan standardisasi dan menguji normalisasi data.
-6. Mengevaluasi serta membandingkan performa kedua model.
-7. Melakukan prediksi kategori konsumsi energi pada data baru.
-8. Mendukung evaluasi dan peningkatan kesadaran terhadap efisiensi penggunaan energi.
+1. Melakukan preprocessing dan analisis data konsumsi energi rumah tangga.
+2. Membangun model klasifikasi menggunakan algoritma Decision Tree dan Random Forest.
+3. Mengevaluasi dan membandingkan performa kedua model untuk menentukan model dengan hasil pengujian yang lebih baik.
 
 ## Dataset
 
-Dataset yang digunakan adalah **Household Power Consumption** dari Kaggle.
+Dataset yang digunakan adalah **Household Power Consumption**, yang diperoleh dari Kaggle.
 
-Sumber dataset: [Household Power Consumption — Kaggle](https://www.kaggle.com/datasets/shivsaar/dataset)
+Sumber dataset: https://www.kaggle.com/datasets/shivsaar/dataset
 
-Dataset memiliki delapan kolom awal:
+Dataset awal memiliki 260.640 baris dan 8 kolom. Data tersebut memiliki 3.771 nilai kosong pada setiap kolom serta 2.356 baris duplikat berdasarkan pemeriksaan awal pada notebook.
 
-| Kolom | Keterangan |
+Setelah preprocessing, dataset yang digunakan berjumlah **256.844 baris**, tanpa nilai kosong dan tanpa baris duplikat.
+
+### Atribut Dataset
+
+Dataset mencakup informasi waktu dan konsumsi listrik, dengan atribut:
+
+- `time`
+- `global_active_power`
+- `global_reactive_power`
+- `voltage`
+- `global_intensity`
+- `sub_metering_1`
+- `sub_metering_2`
+- `sub_metering_3`
+
+## Tahapan Penelitian
+
+### 1. Preprocessing Data
+
+Preprocessing dilakukan untuk mempersiapkan data sebelum pemodelan, meliputi:
+
+- Menghapus baris duplikat.
+- Menghapus data yang memiliki nilai kosong.
+- Mengubah kolom waktu ke format datetime.
+- Memeriksa kembali kondisi data setelah pembersihan.
+
+Hasil preprocessing menghasilkan 256.844 baris data yang siap digunakan untuk analisis dan pemodelan.
+
+### 2. Pembentukan Kategori Konsumsi Energi
+
+Kategori target dibentuk berdasarkan nilai `global_active_power` menjadi tiga kelas:
+
+| Kategori | Rentang |
 |---|---|
-| `time` | Informasi waktu pengukuran |
-| `global_active_power` | Konsumsi daya aktif global |
-| `global_reactive_power` | Daya reaktif global |
-| `voltage` | Tegangan listrik |
-| `global_intensity` | Intensitas arus listrik |
-| `sub_metering_1` | Pengukuran energi pada submeter 1 |
-| `sub_metering_2` | Pengukuran energi pada submeter 2 |
-| `sub_metering_3` | Pengukuran energi pada submeter 3 |
-
-### Kondisi Dataset
-
-| Keterangan | Jumlah |
-|---|---:|
-| Data awal | 260.640 baris |
-| Data setelah preprocessing | 256.844 baris |
-| Fitur input model | 6 |
-| Kategori target | 3 |
-
-## Metodologi dan Alur Pengerjaan
-
-Proyek dilakukan melalui tahapan berikut:
-
-1. Memuat dataset dan melakukan eksplorasi data.
-2. Memeriksa serta membersihkan data duplikat dan nilai kosong.
-3. Mengubah format kolom waktu.
-4. Melakukan analisis korelasi antarvariabel numerik.
-5. Membentuk kategori konsumsi energi sebagai target klasifikasi.
-6. Menentukan fitur input dan target.
-7. Membagi dataset menjadi data training dan testing.
-8. Melakukan standardisasi fitur.
-9. Menguji normalisasi sebagai transformasi tambahan.
-10. Melatih model Decision Tree dan Random Forest.
-11. Mengevaluasi dan membandingkan performa model.
-12. Menggunakan model terlatih untuk memprediksi data baru.
-
-## Preprocessing Data
-
-Preprocessing dilakukan untuk mempersiapkan dataset sebelum digunakan dalam proses machine learning. Tahapannya meliputi pemeriksaan struktur data, penghapusan duplikasi, penanganan nilai kosong, perubahan format waktu, pembentukan kategori target, pemilihan fitur, pembagian data, dan standardisasi.
-
-Setelah preprocessing, diperoleh **256.844 baris data** tanpa nilai kosong dan tanpa data duplikat.
-
-## Analisis Korelasi
-
-Analisis korelasi digunakan untuk mengetahui arah dan kekuatan hubungan linear antarvariabel numerik dalam dataset. Hasilnya dapat disajikan dalam bentuk heatmap agar hubungan antarvariabel lebih mudah diamati.
-
-Nilai korelasi yang mendekati 1 menunjukkan hubungan positif yang kuat, sedangkan nilai yang mendekati -1 menunjukkan hubungan negatif yang kuat. Nilai yang mendekati 0 menunjukkan hubungan linear yang lemah.
-
-Analisis ini membantu memahami karakteristik data dan hubungan antarfitur. Namun, korelasi tidak membuktikan hubungan sebab-akibat dan tidak menjadi satu-satunya dasar pemilihan fitur model.
-
-## Pembentukan Kategori Konsumsi Energi
-
-Kolom `global_active_power` digunakan untuk membentuk variabel target bernama `energy_category`.
-
-| Kategori | Rentang `global_active_power` |
-|---|---|
-| Rendah | Lebih dari 0 sampai dengan 0,296 |
-| Sedang | Lebih dari 0,296 sampai dengan 1,606 |
+| Rendah | Lebih dari 0 hingga 0,296 |
+| Sedang | Lebih dari 0,296 hingga 1,606 |
 | Tinggi | Lebih dari 1,606 |
 
-Distribusi kategori pada dataset:
+Distribusi kategori setelah pembentukan target:
 
 | Kategori | Jumlah Data |
 |---|---:|
@@ -121,111 +89,114 @@ Distribusi kategori pada dataset:
 | Tinggi | 64.151 |
 | **Total** | **256.844** |
 
-Pembentukan kategori tersebut menjadikan proyek ini sebagai masalah klasifikasi tiga kelas, bukan peramalan nilai konsumsi energi pada masa mendatang.
+### 3. Analisis Korelasi
 
-## Fitur Input dan Target
+Analisis korelasi digunakan untuk melihat hubungan antarvariabel numerik dalam dataset dan membantu memahami keterkaitan fitur dengan konsumsi energi.
 
-Model menggunakan enam fitur input:
+Pada hasil analisis yang ditampilkan dalam presentasi, nilai korelasi yang disorot adalah:
 
-1. `global_reactive_power`
-2. `voltage`
-3. `global_intensity`
-4. `sub_metering_1`
-5. `sub_metering_2`
-6. `sub_metering_3`
+- `global_intensity`: 1,00
+- `sub_metering_3`: 0,61
+- `voltage`: -0,38
 
-Target yang diprediksi adalah `energy_category`, yang terdiri dari kategori Rendah, Sedang, dan Tinggi.
+Nilai korelasi menunjukkan arah dan kekuatan hubungan linear antarvariabel yang dianalisis. Korelasi tidak dengan sendirinya membuktikan hubungan sebab-akibat.
 
-Kolom `global_active_power` tidak digunakan sebagai fitur input karena kolom tersebut digunakan untuk membentuk target kategori. Pemisahan ini membantu menghindari kebocoran target (*target leakage*) dalam pelatihan dan evaluasi model.
+### 4. Pemilihan Fitur dan Target
 
-## Pembagian Data Training dan Testing
+Fitur yang digunakan untuk pelatihan model terdiri dari enam atribut:
 
-Dataset dibagi dengan proporsi 80% untuk training dan 20% untuk testing.
+- `global_reactive_power`
+- `voltage`
+- `global_intensity`
+- `sub_metering_1`
+- `sub_metering_2`
+- `sub_metering_3`
 
-| Jenis Data | Jumlah Baris | Proporsi |
+Target klasifikasi adalah `energy_category`, yang terdiri dari kategori Rendah, Sedang, dan Tinggi.
+
+Atribut `global_active_power` digunakan untuk membentuk target dan tidak dimasukkan sebagai fitur prediksi agar model tidak memperoleh target secara langsung.
+
+### 5. Pembagian Data
+
+Dataset dibagi menjadi data pelatihan dan pengujian dengan perbandingan 80:20.
+
+| Jenis Data | Jumlah | Persentase |
 |---|---:|---:|
 | Training | 205.475 | 80% |
 | Testing | 51.369 | 20% |
 | **Total** | **256.844** | **100%** |
 
-Pembagian data menggunakan nilai acak tetap agar hasil dapat direproduksi dan mempertahankan proporsi kategori target pada data training dan testing.
+Pembagian menggunakan `random_state=42` dan `stratify=y` untuk mempertahankan proporsi kategori pada kedua bagian data.
 
-Data training digunakan untuk melatih model, sedangkan data testing digunakan untuk mengevaluasi kemampuan model pada data yang tidak digunakan selama pelatihan.
+### 6. Standardisasi dan Normalisasi
 
-## Standardisasi Data
+Pemrosesan skala fitur dalam eksperimen menggunakan dua metode:
 
-Standardisasi dilakukan menggunakan metode StandardScaler untuk menyamakan skala fitur berdasarkan rata-rata dan standar deviasi data training.
+- **StandardScaler:** menstandarkan fitur berdasarkan rata-rata dan simpangan baku data pelatihan.
+- **MinMaxScaler:** mengubah nilai fitur ke rentang 0–1.
 
-Parameter standardisasi dihitung menggunakan data training, kemudian diterapkan pada data training dan testing. Data baru juga harus ditransformasikan menggunakan scaler yang sama sebelum diprediksi.
+Pada alur eksperimen yang ditampilkan, data terlebih dahulu melalui standardisasi menggunakan StandardScaler, kemudian normalisasi menggunakan MinMaxScaler. Parameter transformasi dipelajari dari data training dan diterapkan pada data testing.
 
-Proses ini membantu memastikan transformasi data testing tidak memengaruhi perhitungan parameter standardisasi.
+Kedua transformasi ini menjadi bagian dari alur preprocessing yang digunakan dalam eksperimen model.
 
-## Normalisasi Data
+### 7. Pelatihan Model
 
-Normalisasi merupakan proses mengubah skala nilai fitur ke rentang tertentu, umumnya 0 sampai 1. Salah satu metode yang dapat digunakan adalah Min-Max Scaling.
+Dua algoritma klasifikasi digunakan dalam penelitian ini.
 
-Dalam proyek ini, normalisasi dapat diuji sebagai eksperimen tambahan untuk melihat pengaruh transformasi skala terhadap performa model. Jika normalisasi diterapkan setelah standardisasi, hasil transformasi harus diproses dan dievaluasi secara terpisah.
+**Decision Tree**
 
-Parameter normalisasi dihitung berdasarkan data training dan kemudian diterapkan pada data testing menggunakan parameter yang sama.
+Decision Tree membentuk pohon keputusan dengan membagi data berdasarkan nilai fitur untuk menghasilkan prediksi kategori konsumsi energi. Model menggunakan `random_state=42`.
 
-Decision Tree dan Random Forest umumnya tidak memerlukan standardisasi maupun normalisasi agar dapat bekerja. Oleh karena itu, hasil eksperimen transformasi skala perlu dibandingkan melalui evaluasi, bukan diasumsikan selalu meningkatkan akurasi.
+**Random Forest**
 
-## Algoritma yang Digunakan
+Random Forest menggabungkan prediksi dari 100 pohon keputusan. Model menggunakan `n_estimators=100` dan `random_state=42`.
 
-### 1. Decision Tree
+## Hasil Evaluasi Model
 
-Decision Tree merupakan algoritma klasifikasi yang menggunakan struktur pohon keputusan untuk menentukan kategori berdasarkan aturan yang dipelajari dari fitur input pada data training.
-
-Model ini dilatih menggunakan data training dan dievaluasi menggunakan data testing.
-
-### 2. Random Forest
-
-Random Forest merupakan algoritma klasifikasi yang menggabungkan prediksi dari sejumlah pohon keputusan untuk menghasilkan kategori akhir.
-
-Pada proyek ini, Random Forest menggunakan 100 pohon keputusan. Kedua algoritma dilatih dan dievaluasi menggunakan pembagian data yang sama agar hasilnya dapat dibandingkan.
-
-## Evaluasi Model
-
-Evaluasi dilakukan menggunakan 51.369 baris data testing.
-
-Metrik yang digunakan meliputi:
-
-- **Accuracy:** proporsi prediksi yang benar dari seluruh data testing.
-- **Precision:** ketepatan prediksi untuk suatu kategori.
-- **Recall:** kemampuan model mengenali data yang benar-benar termasuk suatu kategori.
-- **F1-score:** gabungan nilai precision dan recall.
-- **Confusion matrix:** jumlah prediksi benar dan salah untuk setiap kategori.
-
-## Hasil Pengujian Model
-
-Hasil pengujian utama pada data testing:
+Pengujian dilakukan menggunakan 51.369 data testing.
 
 | Model | Akurasi |
 |---|---:|
 | Decision Tree | 96,31% |
 | Random Forest | 96,81% |
 
-Random Forest memperoleh akurasi sekitar 0,50 poin persentase lebih tinggi dibandingkan Decision Tree.
+Berdasarkan hasil yang ditampilkan dalam presentasi, Random Forest memiliki akurasi lebih tinggi sekitar **0,50 poin persentase** dibandingkan Decision Tree.
 
-### Classification Report Random Forest
+### Confusion Matrix
 
-| Kategori | Precision | Recall | F1-Score |
+Baris menunjukkan kategori aktual, sedangkan kolom menunjukkan kategori prediksi. Urutan kategori adalah Rendah, Sedang, dan Tinggi.
+
+**Decision Tree**
+
+| Aktual / Prediksi | Rendah | Sedang | Tinggi |
 |---|---:|---:|---:|
-| Rendah | 0,95 | 0,95 | 0,95 |
-| Sedang | 0,97 | 0,97 | 0,97 |
-| Tinggi | 0,99 | 0,99 | 0,99 |
+| Rendah | 12.186 | 729 | 0 |
+| Sedang | 854 | 24.616 | 154 |
+| Tinggi | 0 | 154 | 12.676 |
 
-Nilai pada tabel dibulatkan hingga dua angka desimal.
+**Random Forest**
 
-### Pemilihan Model
+| Aktual / Prediksi | Rendah | Sedang | Tinggi |
+|---|---:|---:|---:|
+| Rendah | 12.220 | 695 | 0 |
+| Sedang | 695 | 24.783 | 146 |
+| Tinggi | 0 | 98 | 12.732 |
 
-Berdasarkan hasil pengujian, Random Forest memperoleh akurasi sebesar 96,81%, sedangkan Decision Tree memperoleh akurasi sebesar 96,31%.
+Berdasarkan hasil evaluasi pada presentasi, kedua model menunjukkan performa klasifikasi yang tinggi. Kesalahan prediksi terutama terjadi antara kategori yang berdekatan, yaitu Rendah dan Sedang atau Sedang dan Tinggi.
 
-Dengan demikian, Random Forest dipilih sebagai model dengan akurasi pengujian lebih tinggi pada dataset yang digunakan. Hasil ini tidak berarti Random Forest selalu lebih unggul pada semua dataset.
+### F1-Score
+
+| Kategori | Decision Tree | Random Forest |
+|---|---:|---:|
+| Rendah | 0,94 | 0,95 |
+| Sedang | 0,96 | 0,97 |
+| Tinggi | 0,99 | 0,99 |
+
+Hasil tersebut menunjukkan bahwa Random Forest memperoleh F1-score lebih tinggi pada kategori Rendah dan Sedang, sedangkan kedua model memperoleh F1-score yang sama pada kategori Tinggi berdasarkan pembulatan yang ditampilkan.
 
 ## Prediksi Data Baru
 
-Model terlatih digunakan untuk memprediksi data baru dengan nilai fitur berikut:
+Kedua model diuji menggunakan satu contoh data baru dengan enam fitur berikut:
 
 | Fitur | Nilai |
 |---|---:|
@@ -238,65 +209,38 @@ Model terlatih digunakan untuk memprediksi data baru dengan nilai fitur berikut:
 
 Hasil prediksi:
 
-| Model | Hasil Prediksi |
+| Model | Prediksi |
 |---|---|
 | Decision Tree | Sedang |
 | Random Forest | Sedang |
 
-Kedua model menghasilkan kategori Sedang untuk data tersebut.
+Kedua model menghasilkan prediksi yang konsisten, yaitu kategori **Sedang**, pada contoh data tersebut.
 
-Data baru ditransformasikan menggunakan scaler yang sesuai dengan model, kemudian diproses untuk menghasilkan prediksi. Proses penggunaan model terlatih untuk memprediksi data baru disebut *inference*.
+## Teknologi yang Digunakan
 
-## Teknologi dan Library
-
-| Teknologi atau Library | Kegunaan |
-|---|---|
-| Python | Bahasa pemrograman |
-| Google Colab | Lingkungan menjalankan notebook |
-| Pandas | Membaca, membersihkan, dan mengolah dataset |
-| NumPy | Mendukung operasi numerik |
-| Scikit-learn | Pembagian data, transformasi fitur, pelatihan, prediksi, dan evaluasi model |
-| Matplotlib | Visualisasi data |
-| Seaborn | Visualisasi heatmap korelasi jika digunakan |
-| Kaggle | Sumber dataset |
-| GitHub | Penyimpanan dan dokumentasi proyek |
+- Python
+- pandas
+- scikit-learn
+- Jupyter Notebook
+- Dataset Household Power Consumption
+- Matplotlib dan Seaborn untuk visualisasi, apabila digunakan pada notebook
 
 ## Struktur Proyek
 
-- `README.md` — dokumentasi proyek, metodologi, dan hasil pengujian.
-- `prediksi_konsumsi_energii.ipynb` — notebook yang berisi proses pemuatan dataset, preprocessing, analisis korelasi, pembentukan kategori, pembagian data, transformasi fitur, pelatihan model, evaluasi, dan prediksi data baru.
+- `prediksi_konsumsi_energii.ipynb` — notebook yang memuat proses pengolahan data, analisis, pelatihan model, evaluasi, dan prediksi.
 
-## Cara Menjalankan Proyek
-
-1. Unduh dataset dari [Kaggle — Household Power Consumption](https://www.kaggle.com/datasets/shivsaar/dataset).
-2. Buka notebook `prediksi_konsumsi_energii.ipynb` melalui Google Colab.
-3. Siapkan dataset sesuai lokasi file yang digunakan dalam notebook.
-4. Jalankan setiap tahapan secara berurutan.
-5. Periksa hasil preprocessing, analisis korelasi, evaluasi model, dan prediksi data baru.
-
-## Keterbatasan Proyek
-
-1. Kategori konsumsi energi dibentuk berdasarkan batas nilai `global_active_power` yang ditetapkan dalam pengolahan data.
-2. Akurasi model mencerminkan hasil pengujian pada dataset dan pembagian data yang digunakan.
-3. Hasil prediksi bergantung pada kualitas dan kesesuaian data masukan.
-4. Analisis korelasi menunjukkan hubungan antarvariabel, tetapi tidak membuktikan hubungan sebab-akibat.
-5. Standardisasi dan normalisasi merupakan metode transformasi skala yang berbeda. Pengaruhnya terhadap model perlu diperiksa melalui eksperimen.
-6. Model mengklasifikasikan kategori konsumsi energi dan tidak secara langsung mengurangi pemakaian listrik.
-7. Proyek ini berfokus pada klasifikasi, bukan peramalan konsumsi energi masa depan.
+Nama file notebook perlu disesuaikan jika nama berkas di repositori berbeda.
 
 ## Kesimpulan
 
-Decision Tree dan Random Forest berhasil diterapkan untuk mengklasifikasikan konsumsi energi rumah tangga ke dalam kategori Rendah, Sedang, dan Tinggi.
+Berdasarkan hasil pengujian pada dataset dan pembagian data yang digunakan, Decision Tree memperoleh akurasi 96,31%, sedangkan Random Forest memperoleh akurasi 96,81%. Dengan demikian, Random Forest menjadi model dengan akurasi lebih tinggi dalam eksperimen ini.
 
-Dataset melalui preprocessing, analisis korelasi, pembentukan target, pembagian data training dan testing, serta standardisasi sebelum digunakan untuk melatih model utama.
-
-Hasil pengujian menunjukkan akurasi Decision Tree sebesar 96,31% dan Random Forest sebesar 96,81%. Berdasarkan hasil tersebut, Random Forest memiliki akurasi pengujian lebih tinggi pada dataset yang digunakan.
-
-Normalisasi dapat digunakan sebagai eksperimen tambahan untuk memeriksa pengaruh transformasi skala terhadap performa model. Hasil klasifikasi dapat menjadi informasi pendukung untuk mengevaluasi penggunaan energi rumah tangga dan mendorong efisiensi energi yang berkaitan dengan SDG 7.
+Kedua model mampu mengklasifikasikan konsumsi energi rumah tangga ke dalam kategori Rendah, Sedang, dan Tinggi. Hasil penelitian ini dapat menjadi bahan pendukung untuk memahami pola konsumsi energi dan dikaitkan dengan upaya penggunaan energi yang lebih efisien. Namun, model klasifikasi ini tidak secara langsung menghemat listrik dan hasilnya bergantung pada data serta metode pengujian yang digunakan.
 
 ## Referensi
 
-- Dataset: [Household Power Consumption — Kaggle](https://www.kaggle.com/datasets/shivsaar/dataset)
-- Repository: [prediksi-konsumsi-energi-sdg7 — GitHub](https://github.com/elwaa27/prediksi-konsumsi-energi-sdg7)
-- Dokumentasi Scikit-learn: [scikit-learn.org](https://scikit-learn.org/stable/)
-- Dokumentasi Pandas: [pandas.pydata.org](https://pandas.pydata.org/docs/)
+1. Dataset Household Power Consumption dari Kaggle: https://www.kaggle.com/datasets/shivsaar/dataset
+2. Dokumentasi pandas: https://pandas.pydata.org/docs/
+3. Dokumentasi scikit-learn: https://scikit-learn.org/stable/
+4. Dokumentasi Matplotlib: https://matplotlib.org/stable/
+5. Dokumentasi Seaborn: https://seaborn.pydata.org/
